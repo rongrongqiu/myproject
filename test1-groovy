@@ -1,4 +1,11 @@
 #!/usr/bin/env groovy
 node{
- echo "hello"
+    echo "hello"
+    stage "create build output"
+    sh "pwd"
+    sh "mkdir -p output"
+    writeFile file :"output/result.txt", text : "This is useful "
+    
+    stage "Archive build output"
+    archiveArtifacts artifacts:"output/*.txt"
 }
